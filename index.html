@@ -1,124 +1,411 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light" id="html">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content=" Advocacy Initiative Network - Promoting the rights, inclusion, and dignity of persons with disabilities through film and visual storytelling.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advocacy Initiative Network - Promoting the rights, inclusion, and dignity of persons with disabilities through film and visual storytelling.">
+    <meta name="keywords" content="disability advocacy, inclusive storytelling, film advocacy, persons with disabilities, Zambia NGO">
+    <meta property="og:title" content="Advocacy Initiative Network">
+    <meta property="og:description" content="Promoting the rights, inclusion, and dignity of persons with disabilities through film and visual storytelling.">
+    <meta property="og:image" content="https://christian12w.github.io/advocacy-initiative-network/logo.png">
+    <meta property="og:url" content="https://christian12w.github.io/advocacy-initiative-network/">
     <title>Advocacy Initiative Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --secondary-dark: #047857;
+            --accent: #f59e0b;
+            --accent-dark: #d97706;
+            --background: #ffffff;
+            --background-alt: #f8fafc;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .dark {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --accent: #fbbf24;
+            --accent-dark: #f59e0b;
+            --background: #0f172a;
+            --background-alt: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 70%);
-            color: #2d3748;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            transition: all 0.3s ease;
         }
+
+        /* Enhanced Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+
+        /* Improved Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Enhanced Focus States */
         .focus-visible:focus {
-            outline: 2px solid #2b6cb0;
+            outline: 3px solid var(--primary);
             outline-offset: 2px;
+            border-radius: 0.375rem;
         }
-        .nav-link {
+
+        /* Improved Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
             position: relative;
-            transition: color 0.3s ease, transform 0.3s ease;
+            overflow: hidden;
         }
-        .nav-link:hover {
-            color: #48bb78;
-            transform: scale(1.1);
-        }
-        .nav-link::after {
+
+        .btn::before {
             content: '';
             position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--gradient-secondary);
+            color: white;
+        }
+
+        .btn-accent {
+            background: var(--gradient-accent);
+            color: white;
+        }
+
+        /* Enhanced Card Design */
+        .card {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Improved Navigation */
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
             width: 0;
             height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #48bb78;
-            transition: width 0.3s ease;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
-        .nav-link:hover::after {
-            width: 100%;
+
+        .nav-link:hover::before {
+            width: 80%;
         }
+
+        .nav-link:hover {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        /* Enhanced Carousel */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+        }
+
         .carousel-item {
             display: none;
-            animation: fadeIn 1s ease-in-out;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--gradient-primary);
+            color: white;
+            position: relative;
         }
+
         .carousel-item.active {
             display: block;
+            animation: slideInFromRight 0.8s ease-out;
         }
+
+        .carousel-item:nth-child(2) {
+            background: var(--gradient-secondary);
+        }
+
+        .carousel-item:nth-child(3) {
+            background: var(--gradient-accent);
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: white;
+            border-radius: 3px;
+            transition: width 5s linear;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Enhanced Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            background: var(--background);
+            color: var(--text);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-input.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        /* Accessibility Improvements */
+        .high-contrast {
+            background: var(--background);
+            color: var(--text);
+            border: 2px solid var(--text);
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        .slide-in {
-            animation: slideIn 1s ease-out;
-            animation-fill-mode: both;
-        }
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .gradient-overlay {
-            background: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
-        }
-        .parallax {
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-        }
-        @media (max-width: 768px) {
-            .parallax {
-                background-attachment: scroll;
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        .ripple {
+
+        /* Loading States */
+        .loading {
             position: relative;
             overflow: hidden;
         }
-        .ripple::after {
+
+        .loading::after {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: rippleEffect 0.6s ease-out;
-            pointer-events: none;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: loading 1.5s infinite;
         }
-        @keyframes rippleEffect {
-            to { width: 200px; height: 200px; opacity: 0; }
+
+        @keyframes loading {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
-        .float-button {
-            position: fixed;
-            bottom: 1rem;
-            right: 1rem;
-            z-index: 100;
+
+        /* Gallery Styles */
+        .gallery-tab {
+            background: transparent;
+            color: var(--text-muted);
         }
-        .carousel-control {
-            transition: opacity 0.3s ease;
-            opacity: 0.7;
+
+        .gallery-tab.active {
+            background: var(--primary);
+            color: white;
         }
-        .carousel-control:hover {
-            opacity: 1;
+
+        .gallery-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
         }
-        .progress-bar {
-            height: 5px;
-            background: #48bb78;
-            transition: width 5s linear;
+
+        .gallery-content.active {
+            display: block;
         }
+
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -126,392 +413,1311 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 200;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
             justify-content: center;
             align-items: center;
+            animation: fadeIn 0.3s ease-out;
         }
+
+        .modal.active {
+            display: flex;
+        }
+
         .modal-content {
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
             max-width: 90%;
             max-height: 90%;
-            overflow: auto;
-        }
-        .flip-card {
-            perspective: 1000px;
-            height: 16rem;
-        }
-        .flip-card-inner {
             position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-        .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-        }
-        .flip-card-back {
-            transform: rotateY(180deg);
-        }
-        .social-icon {
-            transition: transform 0.3s ease;
-        }
-        .social-icon:hover {
-            transform: scale(1.2);
-        }
-        .typewriter {
+            background: var(--background);
+            border-radius: 0.5rem;
             overflow: hidden;
-            border-right: 0.15em solid #48bb78;
-            white-space: nowrap;
-            animation: typing 3s steps(30, end), blink-caret 0.5s step-end infinite;
+            box-shadow: var(--shadow-lg);
         }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
         }
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #48bb78; }
+
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
         }
-        @media (max-width: 640px) {
-            .carousel-item div {
-                padding: 1rem;
-            }
-            button {
-                width: 100%;
-                margin-bottom: 0.5rem;
-            }
-            .float-button {
-                bottom: 0.5rem;
-                right: 0.5rem;
-            }
-            .modal-content {
-                max-width: 95%;
-                padding: 0.5rem;
-            }
-            .nav-link {
-                font-size: 1rem;
-            }
-            h1 {
-                font-size: 2.5rem;
-            }
-            h2 {
-                font-size: 2rem;
-            }
-            h3 {
-                font-size: 1.5rem;
-            }
-            p, li {
-                font-size: 1rem;
-            }
-            .flip-card {
-                height: 12rem;
-            }
+
+        .video-modal .modal-content {
+            width: 80%;
+            height: 80%;
         }
-        @media (min-width: 641px) and (max-width: 1024px) {
-            .carousel-item div {
-                padding: 1.5rem;
-            }
-            .nav-link {
-                font-size: 1.125rem;
-            }
-            h1 {
-                font-size: 3rem;
-            }
-            h2 {
-                font-size: 2.5rem;
-            }
-            h3 {
-                font-size: 1.75rem;
-            }
+
+        .photo-modal .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .photo-modal img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Form Progress Indicator */
+        .form-progress {
+            position: sticky;
+            top: 0;
+            background: var(--background);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            z-index: 10;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .progress-step-number {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: var(--border);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active .progress-step-number {
+            background: var(--primary);
+            color: white;
+        }
+
+        .progress-step.completed .progress-step-number {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .progress-step-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .progress-step.active .progress-step-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .progress-step.completed .progress-step-label {
+            color: var(--secondary);
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
-    <!-- Floating Support Button -->
-    <div class="float-button">
-        <button id="supportBtn" class="bg-indigo-600 text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300 pulse ripple" aria-label="Open support options">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-        </button>
-        <div id="supportMenu" class="hidden mt-2 bg-white rounded-lg shadow-xl p-4">
-            <a href="mailto:Christiansaidi12@gmail.com?subject=Donation%20Inquiry" class="block text-indigo-600 hover:text-indigo-800 mb-2">Donate</a>
-            <a href="#membership" class="block text-indigo-600 hover:text-indigo-800">Join Membership</a>
-        </div>
-    </div>
+    <!-- Skip to Main Content Link for Accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
+        Skip to main content
+    </a>
 
-    <!-- Header with Video Background -->
-    <header class="relative bg-gradient-to-r from-blue-800 to-blue-600 text-white py-8 sm:py-10">
-        <video autoplay muted loop class="absolute top-0 left-0 w-full h-full object-cover" poster="logo.png">
-            <source src="pic for two.jpg" type=".png"">
-            <track kind="captions" src="captions.vtt" label="English captions">
-        </video>
-        <div class="container mx-auto px-4 sm:px-6 flex items-center relative z-10 animate__animated animate__fadeIn">
-            <img src="Advocacy Initiative.png.png" alt="Advocacy Initiative Network Logo" class="h-20 sm:h-28 mr-6 sm:mr-10 transition-transform duration-300 hover:scale-110" loading="lazy">
-            <div>
-                <h1 class="text-4xl sm:text-5xl font-bold">Advocacy Initiative Network</h1>
-                <p class="mt-2 text-xl sm:text-2xl typewriter">"Inclusion Begins with a Story"</p>
-                <button id="videoBtn" class="mt-4 bg-indigo-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-base sm:text-lg hover:bg-indigo-700 transition duration-300 ripple">Watch Our Story</button>
+    <!-- Enhanced Header with Better Contrast -->
+    <header class="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white py-8 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="container mx-auto px-4 max-w-6xl relative z-10">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="flex items-center mb-6 lg:mb-0">
+                    <div class="relative">
+                        <img src="Advocacy Initiative.png.png" alt="Advocacy Initiative Network Logo" 
+                             class="h-20 w-20 rounded-full border-4 border-white shadow-lg transition-transform duration-300 hover:scale-110" 
+                             loading="eager">
+                        <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
+                    </div>
+                    <div class="ml-6">
+                        <h1 class="text-4xl lg:text-5xl font-bold text-shadow mb-2">
+                            Advocacy Initiative Network
+                        </h1>
+                        <p class="text-xl lg:text-2xl font-light opacity-90 typewriter">
+                            Inclusion Begins with a Story
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" id="searchBar" 
+                               class="w-64 px-4 py-2 rounded-full border-0 bg-white bg-opacity-20 text-white placeholder-white placeholder-opacity-70 focus:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300" 
+                               placeholder="Search our content..." 
+                               aria-label="Search site content">
+                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <svg class="w-5 h-5 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <button id="themeToggle" 
+                            class="p-3 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white" 
+                            aria-label="Toggle light/dark theme">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Video Modal -->
-    <div id="videoModal" class="modal">
-        <div class="modal-content">
-            <button onclick="closeModal()" class="float-right text-gray-600 hover:text-gray-800" aria-label="Close video modal">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-            <video controls class="w-full" poster="logo.png">
-                <source src="advocacy-video.mp4.mp4" type="video/mp4">
-                <track kind="captions" src="captions.vtt" label="English captions">
-            </video>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="bg-white shadow-xl" role="navigation">
-        <div class="container mx-auto px-4 sm:px-6 py-4">
-            <ul class="flex flex-wrap space-x-4 sm:space-x-8 justify-center">
-                <li><a href="#about" class="nav-link text-blue-700 text-base sm:text-xl font-semibold" aria-label="Navigate to About section">About</a></li>
-                <li><a href="#mission" class="nav-link text-blue-700 text-base sm:text-xl font-semibold" aria-label="Navigate to Mission & Vision section">Mission & Vision</a></li>
-                <li><a href="#objectives" class="nav-link text-blue-700 text-base sm:text-xl font-semibold" aria-label="Navigate to Objectives section">Objectives</a></li>
-                <li><a href="#governance" class="nav-link text-blue-700 text-base sm:text-xl font-semibold" aria-label="Navigate to Governance section">Governance</a></li>
-                <li><a href="#membership" class="nav-link text-blue-700 text-base sm:text-xl font-semibold" aria-label="Navigate to Membership section">Membership</a></li>
-                <li><a href="#whistleblower" class="nav-link text-blue-700 text-base sm:text-xl font-semibold" aria-label="Navigate to Whistleblower Reporting section">Whistleblower</a></li>
-                <li><a href="#contact" class="nav-link text-blue-700 text-base sm:text-xl font-semibold" aria-label="Navigate to Contact section">Contact</a></li>
-            </ul>
+    <!-- Enhanced Navigation with Better Accessibility -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-900 shadow-lg border-b border-gray-200 dark:border-gray-700" role="navigation" aria-label="Main navigation">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex items-center justify-between py-4">
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" aria-label="Navigate to About section">
+                        About Us
+                    </a>
+                    <a href="#mission" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" aria-label="Navigate to Mission section">
+                        Mission & Vision
+                    </a>
+                    <a href="#objectives" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" aria-label="Navigate to Objectives section">
+                        Objectives
+                    </a>
+                    <a href="#governance" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" aria-label="Navigate to Governance section">
+                        Governance
+                    </a>
+                    <a href="#gallery" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" aria-label="Navigate to Gallery section">
+                        Gallery
+                    </a>
+                    <a href="#membership" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" aria-label="Navigate to Membership section">
+                        Membership
+                    </a>
+                    <a href="#whistleblower" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" aria-label="Navigate to Whistleblower section">
+                        Report Concerns
+                    </a>
+                    <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400" aria-label="Navigate to Contact section">
+                        Contact
+                    </a>
+                </div>
+                
+                <button id="joinUsBtn" class="btn btn-accent ml-4 hidden md:inline-flex" aria-label="Open membership form">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                    </svg>
+                    Join Us
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" aria-label="Toggle mobile menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-2">
+                    <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">About Us</a>
+                    <a href="#mission" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Mission & Vision</a>
+                    <a href="#objectives" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Objectives</a>
+                    <a href="#governance" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Governance</a>
+                    <a href="#gallery" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Gallery</a>
+                    <a href="#membership" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Membership</a>
+                    <a href="#whistleblower" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Report Concerns</a>
+                    <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <!-- Carousel Section -->
-    <section class="py-8 sm:py-16">
-        <div class="container mx-auto px-4 sm:px-6 relative">
-            <div class="carousel relative w-full max-w-5xl mx-auto">
-                <div class="carousel-item active slide-in">
-                    <div class="bg-blue-100 p-4 sm:p-8 rounded-xl text-center shadow-lg gradient-overlay">
-                        <h2 class="text-2xl sm:text-3xl font-semibold mb-3">Vision Statement</h2>
-                        <p class="text-base sm:text-lg">To create a world where the voices, stories, and rights of persons with disabilities are powerfully represented, respected, and realized through the transformative lens of film and media.</p>
+    <main id="main-content">
+        <!-- Enhanced Carousel Section -->
+        <section class="py-16 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="carousel-container">
+                    <div class="carousel-item active">
+                        <div class="max-w-4xl mx-auto">
+                            <h2 class="text-3xl lg:text-4xl font-bold mb-6 text-shadow">Vision Statement</h2>
+                            <p class="text-xl leading-relaxed opacity-95">
+                                To create a world where the voices, stories, and rights of persons with disabilities are powerfully represented, respected, and realized through the transformative lens of film and media.
+                            </p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="carouselProgress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <div class="max-w-4xl mx-auto">
+                            <h2 class="text-3xl lg:text-4xl font-bold mb-6 text-shadow">Mission Statement</h2>
+                            <p class="text-xl leading-relaxed opacity-95">
+                                To harness the power of film and visual storytelling to advocate for the rights, dignity, and inclusion of persons with disabilities—amplifying their voices, challenging stereotypes, and inspiring action toward a more just and accessible world.
+                            </p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <div class="max-w-4xl mx-auto">
+                            <h2 class="text-3xl lg:text-4xl font-bold mb-6 text-shadow">Core Value: Inclusion</h2>
+                            <p class="text-xl leading-relaxed opacity-95">
+                                We ensure that persons with disabilities are not just represented, but actively involved in all aspects of storytelling—from concept to screen.
+                            </p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="carousel-item slide-in">
-                    <div class="bg-green-100 p-4 sm:p-8 rounded-xl text-center shadow-lg gradient-overlay">
-                        <h2 class="text-2xl sm:text-3xl font-semibold mb-3">Mission Statement</h2>
-                        <p class="text-base sm:text-lg">To harness the power of film and visual storytelling to advocate for the rights, dignity, and inclusion of persons with disabilities—amplifying their voices, challenging stereotypes, and inspiring action toward a more just and accessible world.</p>
-                    </div>
+                
+                <!-- Enhanced Carousel Controls -->
+                <div class="flex justify-center mt-8 space-x-4">
+                    <button class="carousel-control bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white" 
+                            onclick="prevSlide()" aria-label="Previous slide">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <button class="carousel-control bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white" 
+                            onclick="nextSlide()" aria-label="Next slide">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
                 </div>
-                <div class="carousel-item slide-in">
-                    <div class="bg-yellow-100 p-4 sm:p-8 rounded-xl text-center shadow-lg gradient-overlay">
-                        <h2 class="text-2xl sm:text-3xl font-semibold mb-3">Core Value: Inclusion</h2>
-                        <p class="text-base sm:text-lg">We ensure that persons with disabilities are not just represented, but actively involved in all aspects of storytelling—from concept to screen.</p>
+            </div>
+        </section>
+
+        <!-- About Section with Enhanced Accessibility -->
+        <section id="about" class="py-16 bg-white dark:bg-gray-900">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="card fade-in">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-gray-900 dark:text-white">About Us</h2>
+                        <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
+                    </div>
+                    
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
+                                The Advocacy Initiative Network is a registered organization under the Persons with Disabilities Act No. 6 of 2012, based in Lusaka, Zambia. Our headquarters are located at Compensation Worker's House, 3rd Floor, Suite 346, along Cairo Road, Lusaka.
+                            </p>
+                            <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
+                                Our motto, <strong class="text-blue-600 dark:text-blue-400">"Inclusion Begins with a Story,"</strong> reflects our commitment to producing films that highlight the lived experiences of persons with disabilities.
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    <span class="text-sm font-medium text-gray-600 dark:text-gray-400">Registered NGO</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                    <span class="text-sm font-medium text-gray-600 dark:text-gray-400">Lusaka Based</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                                    <span class="text-sm font-medium text-gray-600 dark:text-gray-400">Film Advocacy</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="bg-gradient-to-br from-blue-600 to-purple-600 p-8 rounded-2xl text-white text-center">
+                                <div class="text-6xl mb-4">🎬</div>
+                                <h3 class="text-2xl font-bold mb-4">Our Impact</h3>
+                                <div class="grid grid-cols-2 gap-6">
+                                    <div>
+                                        <div class="text-3xl font-bold">500+</div>
+                                        <div class="text-sm opacity-90">Stories Shared</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-3xl font-bold">50+</div>
+                                        <div class="text-sm opacity-90">Films Produced</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="w-full max-w-5xl mx-auto mt-4">
-                <div class="progress-bar" id="carouselProgress" style="width: 0%"></div>
-            </div>
-            <button class="carousel-control absolute top-1/2 left-0 sm:left-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full" onclick="prevSlide()" aria-label="Previous slide">
-                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-            <button class="carousel-control absolute top-1/2 right-0 sm:right-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full" onclick="nextSlide()" aria-label="Next slide">
-                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
-        </div>
-    </section>
+        </section>
 
-    <!-- Featured Story Section -->
-    <section id="featured-story" class="py-8 sm:py-16 bg-gradient-to-r from-indigo-100 to-blue-100">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="text-2xl sm:text-4xl font-bold mb-8 slide-in text-center">Featured Story</h2>
-            <div class="flip-card max-w-md mx-auto h-48 sm:h-64">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front bg-indigo-600 text-white p-4 sm:p-6 rounded-xl shadow-lg flex items-center justify-center">
-                        <h3 class="text-xl sm:text-2xl font-semibold">Empowering Voices</h3>
+        <!-- Objectives Section with Better Structure -->
+        <section id="objectives" class="py-16 bg-gray-50 dark:bg-gray-800">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Our Objectives</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-green-600 to-blue-600 mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card slide-up">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+                            <span class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">1</span>
+                            General Objective
+                        </h3>
+                        <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+                            To promote the rights, inclusion, and dignity of persons with disabilities by using film and visual storytelling as powerful tools for advocacy, awareness, and social transformation.
+                        </p>
                     </div>
-                    <div class="flip-card-back bg-indigo-800 text-white p-4 sm:p-6 rounded-xl shadow-lg">
-                        <p class="text-base sm:text-lg">Meet Sarah, whose story of resilience was shared through our film project, inspiring thousands to advocate for accessibility.</p>
-                        <a href="#contact" class="mt-4 inline-block text-indigo-200 underline">Learn More</a>
+                    
+                    <div class="card slide-up">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+                            <span class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">2</span>
+                            Specific Objectives
+                        </h3>
+                        <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start">
+                                <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Produce inclusive and authentic films</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Amplify the voices of persons with disabilities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Raise public awareness and challenge stereotypes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Promote accessibility in media and the arts</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Influence policy and social change through storytelling</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Foster inclusive collaborations and partnerships</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span>Document and archive disability histories and cultures</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-8 sm:py-16 bg-white parallax" style="background-image: url('https://images.unsplash.com/photo-1593113598332-cd3d30f39bf5?auto=format&fit=crop&w=1920&q=80');">
-        <div class="container mx-auto px-4 sm:px-6 bg-white bg-opacity-90 rounded-xl p-4 sm:p-8">
-            <h2 class="text-2xl sm:text-4xl font-bold mb-8 slide-in">About Us</h2>
-            <p class="mb-6 text-base sm:text-xl">The Advocacy Initiative Network is a registered organization under the Persons with Disabilities Act No. 6 of 2012, based in Lusaka, Zambia. Our headquarters are located at Compensation Worker’s House, 3rd Floor, Suite 346, along Cairo Road, Lusaka.</p>
-            <p class="text-base sm:text-xl">Our motto, <strong>"Inclusion Begins with a Story,"</strong> reflects our commitment to producing films that highlight the lived experiences of persons with disabilities.</p>
-        </div>
-    </section>
-
-    <!-- Objectives Section -->
-    <section id="objectives" class="py-8 sm:py-16">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="text-2xl sm:text-4xl font-bold mb-8 slide-in">Objectives</h2>
-            <h3 class="text-xl sm:text-2xl font-semibold mb-5">General Objective</h3>
-            <p class="mb-6 text-base sm:text-lg">To promote the rights, inclusion, and dignity of persons with disabilities by using film and visual storytelling as powerful tools for advocacy, awareness, and social transformation.</p>
-            <h3 class="text-xl sm:text-2xl font-semibold mb-5">Specific Objectives</h3>
-            <ul class="list-disc pl-8 text-base sm:text-lg">
-                <li>Produce inclusive and authentic films.</li>
-                <li>Amplify the voices of persons with disabilities.</li>
-                <li>Raise public awareness and challenge stereotypes.</li>
-                <li>Promote accessibility in media and the arts.</li>
-                <li>Influence policy and social change through storytelling.</li>
-                <li>Foster inclusive collaborations and partnerships.</li>
-                <li>Document and archive disability histories and cultures.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Governance Section -->
-    <section id="governance" class="py-8 sm:py-16 bg-white parallax" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1920&q=80');">
-        <div class="container mx-auto px-4 sm:px-6 bg-white bg-opacity-90 rounded-xl p-4 sm:p-8">
-            <h2 class="text-2xl sm:text-4xl font-bold mb-8 slide-in">Governance</h2>
-            <h3 class="text-xl sm:text-2xl font-semibold mb-5">Advisory Board</h3>
-            <p class="mb-6 text-base sm:text-lg">The Advisory Board consists of 5 to 10 members, including a Chairperson, Treasurer, Secretary, and Committee Members. The board provides policy direction, approves annual work plans and budgets, and serves for a renewable two-year term.</p>
-            <h3 class="text-xl sm:text-2xl font-semibold mb-5">Management/Secretariat</h3>
-            <p class="mb-6 text-base sm:text-lg">The organization is managed by an Executive Director, supported by a National Coordinator, Media Director, Accountant, and Administration Officer. The secretariat implements board policies and reports quarterly.</p>
-        </div>
-    </section>
-
-    <!-- Whistleblower Reporting Section -->
-    <section id="whistleblower" class="py-8 sm:py-16">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="text-2xl sm:text-4xl font-bold mb-8 slide-in">Whistleblower Reporting</h2>
-            <p class="mb-6 text-base sm:text-xl">Your voice drives change! Report concerns about misconduct or policy violations anonymously through our secure form.</p>
-            <form class="max-w-lg mx-auto bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg" onsubmit="handleWhistleblowerSubmit(event)">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4">
-                    <div id="formProgress" class="bg-red-600 h-2.5 rounded-full" style="width: 0%"></div>
+        <!-- Governance Section -->
+        <section id="governance" class="py-16 bg-white dark:bg-gray-900">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Governance Structure</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full"></div>
                 </div>
-                <div class="mb-4">
-                    <label class="block text-base sm:text-lg font-medium mb-2" for="whistleblower-name">Name (Optional)</label>
-                    <input type="text" id="whistleblower-name" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-red-500" pattern="[A-Za-z\s]{0,}" title="Name should contain only letters and spaces, or leave blank for anonymity" oninput="updateFormProgress()">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-base sm:text-lg font-medium mb-2" for="whistleblower-email">Email (Optional)</label>
-                    <input type="email" id="whistleblower-email" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-red-500" oninput="updateFormProgress()">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-base sm:text-lg font-medium mb-2" for="whistleblower-message">Report Details</label>
-                    <textarea id="whistleblower-message" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-red-500" rows="6" required oninput="updateFormProgress()"></textarea>
-                </div>
-                <button type="submit" class="bg-red-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-base sm:text-lg hover:bg-red-700 transition duration-300 pulse ripple">Submit Report</button>
-            </form>
-            <p class="mt-6 text-base sm:text-lg text-center">All submissions are confidential and promptly investigated to uphold our commitment to accountability.</p>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-8 sm:py-16 bg-gradient-to-r from-gray-100 to-gray-200">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="text-2xl sm:text-4xl font-bold mb-8 slide-in">What People Say</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <p class="text-base sm:text-lg italic">"This organization has given me a voice through film—truly transformative!"</p>
-                    <p class="mt-4 text-right font-semibold">- Taonga Mulemyi</p>
-                </div>
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <p class="text-base sm:text-lg italic">"The inclusivity here is inspiring and sets a new standard."</p>
-                    <p class="mt-4 text-right font-semibold">- Harriet Phiri</p>
+                
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div class="card fade-in">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+                            <svg class="w-8 h-8 text-purple-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                            Advisory Board
+                        </h3>
+                        <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
+                            The Advisory Board consists of 5 to 10 members, including a Chairperson, Treasurer, Secretary, and Committee Members. The board provides policy direction, approves annual work plans and budgets, and serves for a renewable two-year term.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-purple-50 dark:bg-purple-900 p-4 rounded-lg">
+                                <div class="text-2xl font-bold text-purple-600 dark:text-purple-400">5-10</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Board Members</div>
+                            </div>
+                            <div class="bg-purple-50 dark:bg-purple-900 p-4 rounded-lg">
+                                <div class="text-2xl font-bold text-purple-600 dark:text-purple-400">2</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Year Terms</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card fade-in">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+                            <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                            </svg>
+                            Management/Secretariat
+                        </h3>
+                        <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
+                            The organization is managed by an Executive Director, supported by a National Coordinator, Media Director, Accountant, and Administration Officer. The secretariat implements board policies and reports quarterly.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
+                                <span class="text-gray-700 dark:text-gray-300">Executive Director</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
+                                <span class="text-gray-700 dark:text-gray-300">National Coordinator</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
+                                <span class="text-gray-700 dark:text-gray-300">Media Director</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
+                                <span class="text-gray-700 dark:text-gray-300">Accountant</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
+                                <span class="text-gray-700 dark:text-gray-300">Administration Officer</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Membership Section -->
-    <section id="membership" class="py-8 sm:py-16 parallax" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80');">
-        <div class="container mx-auto px-4 sm:px-6 bg-white bg-opacity-90 rounded-xl p-4 sm:p-8">
-            <h2 class="text-2xl sm:text-4xl font-bold mb-8 slide-in">Membership</h2>
-            <p class="text-base sm:text-xl">Join our vibrant community of advocates! Membership is open to all, with a modest fee set by our executive committee. Be a part of the change!</p>
-            <a href="mailto:Advocacyinitiativenetwork@gmail.com?subject=Membership%20Inquiry" class="mt-6 bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg hover:bg-green-700 transition duration-300 inline-block pulse ripple">Join Us Today</a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-8 sm:py-16 bg-white">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="text-2xl sm:text-4xl font-bold mb-8 slide-in">Contact Us</h2>
-            <form class="max-w-lg mx-auto bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg" onsubmit="handleSubmit(event)">
-                <div class="mb-4">
-                    <label class="block text-base sm:text-lg font-medium mb-2" for="name">Name</label>
-                    <input type="text" id="name" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500" required pattern="[A-Za-z\s]{2,}" title="Name should contain only letters and spaces">
+        <!-- Enhanced Whistleblower Section -->
+        <section id="whistleblower" class="py-16 bg-red-50 dark:bg-red-900">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Whistleblower Reporting</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-red-600 to-orange-600 mx-auto rounded-full"></div>
+                    <p class="text-xl text-gray-700 dark:text-gray-300 mt-6">
+                        Your voice drives change! Report concerns about misconduct or policy violations anonymously through our secure form.
+                    </p>
                 </div>
-                <div class="mb-4">
-                    <label class="block text-base sm:text-lg font-medium mb-2" for="email">Email</label>
-                    <input type="email" id="email" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                
+                <div class="card bg-white dark:bg-gray-800 shadow-xl">
+                    <div class="mb-8 text-center">
+                        <div class="w-24 h-24 bg-red-100 dark:bg-red-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-12 h-12 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Secure & Confidential</h3>
+                        <p class="text-gray-600 dark:text-gray-400">All reports are handled with the utmost confidentiality</p>
+                    </div>
+                    
+                    <form id="whistleblowerForm" class="space-y-6" onsubmit="handleWhistleblowerSubmit(event)">
+                        <div class="mb-6">
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 mb-2">
+                                <div id="formProgress" class="bg-gradient-to-r from-red-500 to-orange-500 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                            <div class="text-right">
+                                <span id="progressPercentage" class="text-sm font-medium text-gray-600 dark:text-gray-400">0% Complete</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="whistleblower-name">Name (Optional)</label>
+                            <input type="text" id="whistleblower-name" class="form-input" 
+                                   placeholder="Your name (optional)" 
+                                   aria-describedby="whistleblower-name-error" 
+                                   oninput="updateFormProgress()">
+                            <p id="whistleblower-name-error" class="error-message">Invalid name format.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="whistleblower-email">Email (Optional)</label>
+                            <input type="email" id="whistleblower-email" class="form-input" 
+                                   placeholder="your.email@example.com" 
+                                   aria-describedby="whistleblower-email-error" 
+                                   oninput="updateFormProgress()">
+                            <p id="whistleblower-email-error" class="error-message">Invalid email format.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="whistleblower-message">Report Details *</label>
+                            <textarea id="whistleblower-message" class="form-input" rows="6" required 
+                                      placeholder="Please provide detailed information about your concern..." 
+                                      aria-describedby="whistleblower-message-error" 
+                                      oninput="updateFormProgress()"></textarea>
+                            <p id="whistleblower-message-error" class="error-message">Report details are required.</p>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-full text-lg py-4" data-tooltip="Submit Report">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                            </svg>
+                            Submit Report
+                        </button>
+                    </form>
+                    
+                    <div class="mt-8 p-4 bg-blue-50 dark:bg-blue-900 rounded-lg">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-2">Confidentiality Guarantee</h4>
+                                <p class="text-sm text-blue-800 dark:text-blue-200">
+                                    All submissions are confidential and promptly investigated to uphold our commitment to accountability and transparency.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label class="block text-base sm:text-lg font-medium mb-2" for="message">Message</label>
-                    <textarea id="message" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-base sm:text-lg hover:bg-blue-700 transition duration-300 pulse ripple">Send Message</button>
-            </form>
-            <p class="mt-6 text-base sm:text-lg text-center">Advocacy Initiative Network<br>Compensation Worker’s House, 3rd Floor, Suite 346<br>Cairo Road, Lusaka, Zambia</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="text-center py-6 mt-10 bg-gradient-to-r from-gray-800 to-gray-900 text-gray-300">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h3 class="text-xl sm:text-2xl font-semibold mb-4">Stay Connected</h3>
-            <div class="flex justify-center space-x-4 sm:space-x-6 mb-6">
-                <a href="https://www.facebook.com/SandsonmbeweSenior" target="_blank" class="social-icon" aria-label="Follow us on Facebook">
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7v-3h3V9c0-2.76 1.79-4.5 4.5-4.5 1.27 0 2.5.25 2.5.25v3H16c-1.38 0-2 .62-2 1.75V12h3l-.5 3h-2.5v6.8c4.56-.93 8-4.96 8-9.8z" />
-                    </svg>
-                </a>
-                <a href="https://www.tiktok.com/@advocacy.initiati" target="_blank" class="social-icon" aria-label="Follow us on TikTok">
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19.59 6.69c-.49-.59-1.14-1.06-1.87-1.35A5.92 5.92 0 0015.5 5c-1.68 0-3.27.55-4.55 1.49V4.5H9.5v10.25c0 1.66 1.34 3 3 3s3-1.34 3-3V9.75c1.22.91 2.67 1.47 4.25 1.47V9.5c-.83 0-1.59-.22-2.25-.56v4.31c0 2.76-2.24 5-5 5s-5-2.24-5-5V4.5C7.5 3.12 8.62 2 10 2h1.5v2.25c1.28-.94 2.87-1.49 4.5-1.49 1.12 0 2.17.36 3.02 1.03.84.66 1.48 1.56 1.87 2.59V2h1.5v7.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5V6.69z" />
-                    </svg>
-                </a>
-                <a href="https://www.instagram.com/advocacy.initiativenetwork" target="_blank" class="social-icon" aria-label="Follow us on Instagram">
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.06 1.97.24 2.67.5.73.27 1.38.65 2.01 1.28s1 1.28 1.28 2.01c.26.7.44 1.5.5 2.67.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.06 1.17-.24 1.97-.5 2.67-.27.73-.65 1.38-1.28 2.01s-1.28 1-2.01 1.28c-.7.26-1.5.44-2.67.5-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.06-1.97-.24-2.67-.5-.73-.27-1.38-.65-2.01-1.28s-1-1.28-1.28-2.01c-.26-.7-.44-1.5-.5-2.67-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.06-1.17.24-1.97.5-2.67.27-.73.65-1.38 1.28-2.01s1.28-1 2.01-1.28c.7-.26 1.5-.44 2.67-.5 1.27-.06 1.65-.07 4.85-.07m0-2.16C8.74 0 8.33.01 7.05.07c-1.3.06-2.19.27-2.97.58-.95.35-1.81.85-2.64 1.68S.24 3.79.24 4.74c-.31.78-.52 1.67-.58 2.97C.01 8.99 0 9.4 0 12s.01 3.01.07 4.29c.06 1.3.27 2.19.58 2.97.35.95.85 1.81 1.68 2.64s1.69 1.33 2.64 1.68c.78.31 1.67.52 2.97.58 1.28.06 1.69.07 4.29.07s3.01-.01 4.29-.07c1.3-.06 2.19-.27 2.97-.58.95-.35 1.81-.85 2.64-1.68s1.33-1.69 1.68-2.64c.31-.78.52-1.67.58-2.97.06-1.28.07-1.69.07-4.29s-.01-3.01-.07-4.29c-.06-1.3-.27-2.19-.58-2.97-.35-.95-.85-1.81-1.68-2.64s-1.69-1.33-2.64-1.68c-.78-.31-1.67-.52-2.97-.58C15.01.01 14.6 0 12 0z" />
-                    </svg>
-                </a>
             </div>
-            <form class="max-w-md mx-auto mb-6" onsubmit="handleNewsletterSubmit(event)">
-                <div class="flex">
-                    <input type="email" id="newsletter-email" class="w-full p-3 border rounded-l-lg focus:ring-2 focus:ring-indigo-500" placeholder="Enter your email" required>
-                    <button type="submit" class="bg-indigo-600 text-white px-4 py-3 rounded-r-lg hover:bg-indigo-700 transition duration-300 ripple">Subscribe</button>
+        </section>
+
+        <!-- Video & Picture Gallery Section -->
+        <section id="gallery" class="py-16 bg-white dark:bg-gray-900">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Our Work in Action</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full"></div>
+                    <p class="text-xl text-gray-600 dark:text-gray-400 mt-6">
+                        Explore our stories, films, and impact through our multimedia gallery
+                    </p>
                 </div>
-            </form>
-            <p>
-                &copy; 2025 Advocacy Initiative Network. All rights reserved.<br>
-                <button id="donateBtn" onclick="window.location.href='mailto:Advocacyinitiativenetwork@gmail.com?subject=Donation%20Inquiry'" class="bg-yellow-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-base sm:text-lg hover:bg-yellow-700 transition duration-300 inline-block mt-2 pulse ripple" title="Support our mission with a donation">Donate Now</button><br>
-                For all messages, please <a href="mailto:Advocacyinitiativenetwork@gmail.com" class="text-indigo-400 underline font-semibold hover:text-indigo-600">email us</a>.
-            </p>
+
+                <!-- Gallery Navigation -->
+                <div class="flex justify-center mb-8">
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+                        <button class="gallery-tab active px-6 py-2 rounded-md text-sm font-medium transition-all duration-300" data-tab="videos">
+                            <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                            </svg>
+                            Videos
+                        </button>
+                        <button class="gallery-tab px-6 py-2 rounded-md text-sm font-medium transition-all duration-300" data-tab="photos">
+                            <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            Photos
+                        </button>
+                        <button class="gallery-tab px-6 py-2 rounded-md text-sm font-medium transition-all duration-300" data-tab="stories">
+                            <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                            Stories
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Videos Tab -->
+                <div id="videos" class="gallery-content active">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="card group cursor-pointer" onclick="openVideoModal('video1')">
+                            <div class="relative overflow-hidden rounded-lg mb-4">
+                                <img src="https://images.unsplash.com/photo-1593113598332-cd3d30f39bf5?auto=format&fit=crop&w=400&q=80" 
+                                     alt="Inclusive Film Making Workshop" 
+                                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Inclusive Film Making Workshop</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Join us as we explore the power of inclusive storytelling in our community workshop.</p>
+                        </div>
+
+                        <div class="card group cursor-pointer" onclick="openVideoModal('video2')">
+                            <div class="relative overflow-hidden rounded-lg mb-4">
+                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80" 
+                                     alt="Advocacy Campaign Launch" 
+                                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Advocacy Campaign Launch</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Witness the launch of our latest advocacy campaign for disability rights.</p>
+                        </div>
+
+                        <div class="card group cursor-pointer" onclick="openVideoModal('video3')">
+                            <div class="relative overflow-hidden rounded-lg mb-4">
+                                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=400&q=80" 
+                                     alt="Community Outreach Program" 
+                                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Community Outreach Program</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">See how we're making a difference in communities across Zambia.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photos Tab -->
+                <div id="photos" class="gallery-content hidden">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="group cursor-pointer" onclick="openPhotoModal('photo1')">
+                            <img src="advocacy-Pictures/film-production-team.jpg" 
+                                 alt="Film Production Team" 
+                                 class="w-full h-48 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="group cursor-pointer" onclick="openPhotoModal('photo2')">
+                            <img src="advocacy-Pictures/advocacy-meeting.jpg" 
+                                 alt="Advocacy Meeting" 
+                                 class="w-full h-48 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="group cursor-pointer" onclick="openPhotoModal('photo3')">
+                            <img src="advocacy-Pictures/community-workshop.jpg" 
+                                 alt="Community Workshop" 
+                                 class="w-full h-48 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="group cursor-pointer" onclick="openPhotoModal('photo4')">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" 
+                                 alt="Youth Empowerment Session" 
+                                 class="w-full h-48 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="group cursor-pointer" onclick="openPhotoModal('photo5')">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=300&q=80" 
+                                 alt="Policy Discussion" 
+                                 class="w-full h-48 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="group cursor-pointer" onclick="openPhotoModal('photo6')">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=300&q=80" 
+                                 alt="Team Collaboration" 
+                                 class="w-full h-48 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="group cursor-pointer" onclick="openPhotoModal('photo7')">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=300&q=80" 
+                                 alt="Film Screening Event" 
+                                 class="w-full h-48 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="group cursor-pointer" onclick="openPhotoModal('photo8')">
+                            <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=300&q=80" 
+                                 alt="Community Celebration" 
+                                 class="w-full h-48 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stories Tab -->
+                <div id="stories" class="gallery-content hidden">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="card">
+                            <div class="flex items-start space-x-4">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=100&q=80" 
+                                     alt="Sarah's Story" 
+                                     class="w-16 h-16 rounded-full object-cover">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Sarah's Journey to Advocacy</h3>
+                                    <p class="text-gray-600 dark:text-gray-400 mb-3">"Through the Advocacy Initiative Network, I found my voice and learned to tell my story through film. Now I'm helping others do the same."</p>
+                                    <span class="text-sm text-blue-600 dark:text-blue-400 font-medium">- Sarah Mulemyi</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="flex items-start space-x-4">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" 
+                                     alt="John's Story" 
+                                     class="w-16 h-16 rounded-full object-cover">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">John's Impact Story</h3>
+                                    <p class="text-gray-600 dark:text-gray-400 mb-3">"The organization's commitment to inclusive storytelling has transformed how we view disability rights in our community."</p>
+                                    <span class="text-sm text-blue-600 dark:text-blue-400 font-medium">- John Phiri</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="flex items-start space-x-4">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80" 
+                                     alt="Maria's Story" 
+                                     class="w-16 h-16 rounded-full object-cover">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Maria's Advocacy Success</h3>
+                                    <p class="text-gray-600 dark:text-gray-400 mb-3">"Our film project reached thousands and helped change local policies. The power of visual storytelling is incredible."</p>
+                                    <span class="text-sm text-blue-600 dark:text-blue-400 font-medium">- Maria Banda</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="flex items-start space-x-4">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" 
+                                     alt="David's Story" 
+                                     class="w-16 h-16 rounded-full object-cover">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">David's Community Impact</h3>
+                                    <p class="text-gray-600 dark:text-gray-400 mb-3">"As a volunteer member, I've seen firsthand how our advocacy work creates real change in people's lives."</p>
+                                    <span class="text-sm text-blue-600 dark:text-blue-400 font-medium">- David Mwale</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Membership Application Section -->
+        <section id="membership" class="py-16 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Join Our Mission</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-green-600 mx-auto rounded-full"></div>
+                    <p class="text-xl text-gray-600 dark:text-gray-400 mt-6">
+                        Become part of our community and help us create positive change through advocacy and storytelling.
+                    </p>
+                </div>
+
+                <div class="card bg-white dark:bg-gray-800 shadow-xl">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Advocacy Initiative Network</h3>
+                        <h4 class="text-lg text-gray-600 dark:text-gray-400 mb-4">Membership Application Form</h4>
+                        <div class="flex justify-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+                            <span>Empowering Communities</span>
+                            <span>•</span>
+                            <span>Advancing Equity</span>
+                            <span>•</span>
+                            <span>Driving Change</span>
+                        </div>
+                    </div>
+
+                    <form id="membershipForm" class="space-y-8" onsubmit="handleMembershipSubmit(event)">
+                        <!-- Personal Information -->
+                        <div class="border-b border-gray-200 dark:border-gray-700 pb-6">
+                            <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                </svg>
+                                Personal Information
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="fullName">Full Name *</label>
+                                    <input type="text" id="fullName" name="fullName" class="form-input" required>
+                                    <p id="fullName-error" class="error-message">Full name is required.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="dateOfBirth">Date of Birth *</label>
+                                    <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-input" required>
+                                    <p id="dateOfBirth-error" class="error-message">Date of birth is required.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Gender *</label>
+                                    <div class="flex space-x-4 mt-2">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="gender" value="male" class="mr-2" required>
+                                            <span class="text-gray-700 dark:text-gray-300">Male</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="radio" name="gender" value="female" class="mr-2" required>
+                                            <span class="text-gray-700 dark:text-gray-300">Female</span>
+                                        </label>
+                                    </div>
+                                    <p id="gender-error" class="error-message">Please select your gender.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="nationality">Nationality *</label>
+                                    <input type="text" id="nationality" name="nationality" class="form-input" required>
+                                    <p id="nationality-error" class="error-message">Nationality is required.</p>
+                                </div>
+                                <div class="form-group md:col-span-2">
+                                    <label class="form-label" for="nationalId">National ID / Passport Number *</label>
+                                    <input type="text" id="nationalId" name="nationalId" class="form-input" required>
+                                    <p id="nationalId-error" class="error-message">National ID or Passport number is required.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Details -->
+                        <div class="border-b border-gray-200 dark:border-gray-700 pb-6">
+                            <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                Contact Details
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="form-group md:col-span-2">
+                                    <label class="form-label" for="address">Residential Address *</label>
+                                    <textarea id="address" name="address" class="form-input" rows="2" required></textarea>
+                                    <p id="address-error" class="error-message">Residential address is required.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="city">City/Town *</label>
+                                    <input type="text" id="city" name="city" class="form-input" required>
+                                    <p id="city-error" class="error-message">City/Town is required.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="province">Province *</label>
+                                    <input type="text" id="province" name="province" class="form-input" required>
+                                    <p id="province-error" class="error-message">Province is required.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" class="form-input" required>
+                                    <p id="phone-error" class="error-message">Phone number is required.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" class="form-input" required>
+                                    <p id="email-error" class="error-message">Valid email address is required.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Professional Background -->
+                        <div class="border-b border-gray-200 dark:border-gray-700 pb-6">
+                            <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"/>
+                                </svg>
+                                Professional Background (Optional)
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="occupation">Occupation/Field of Work</label>
+                                    <input type="text" id="occupation" name="occupation" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="organization">Organization (if applicable)</label>
+                                    <input type="text" id="organization" name="organization" class="form-input">
+                                </div>
+                                <div class="form-group md:col-span-2">
+                                    <label class="form-label" for="skills">Skills or Expertise You'd Like to Share</label>
+                                    <textarea id="skills" name="skills" class="form-input" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Membership Type -->
+                        <div class="border-b border-gray-200 dark:border-gray-700 pb-6">
+                            <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                Membership Type *
+                            </h5>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Please select your preferred membership category:</p>
+                            <div class="space-y-3">
+                                <label class="flex items-start p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                                    <input type="radio" name="membershipType" value="general" class="mt-1 mr-3" required>
+                                    <div>
+                                        <div class="font-medium text-gray-900 dark:text-white">General Member</div>
+                                        <div class="text-sm text-gray-600 dark:text-gray-400">Participate in events and receive updates</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-start p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                                    <input type="radio" name="membershipType" value="volunteer" class="mt-1 mr-3" required>
+                                    <div>
+                                        <div class="font-medium text-gray-900 dark:text-white">Volunteer Member</div>
+                                        <div class="text-sm text-gray-600 dark:text-gray-400">Support programs and outreach activities</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-start p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                                    <input type="radio" name="membershipType" value="advocacy" class="mt-1 mr-3" required>
+                                    <div>
+                                        <div class="font-medium text-gray-900 dark:text-white">Advocacy Member</div>
+                                        <div class="text-sm text-gray-600 dark:text-gray-400">Contribute to campaigns and policy work</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-start p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                                    <input type="radio" name="membershipType" value="donor" class="mt-1 mr-3" required>
+                                    <div>
+                                        <div class="font-medium text-gray-900 dark:text-white">Donor Member</div>
+                                        <div class="text-sm text-gray-600 dark:text-gray-400">Provide financial or material support</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <p id="membershipType-error" class="error-message">Please select a membership type.</p>
+                        </div>
+
+                        <!-- Motivation & Interests -->
+                        <div class="border-b border-gray-200 dark:border-gray-700 pb-6">
+                            <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                                Motivation & Interests
+                            </h5>
+                            <div class="space-y-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="motivation">Why do you want to join Advocacy Initiative Network? *</label>
+                                    <textarea id="motivation" name="motivation" class="form-input" rows="4" required 
+                                              placeholder="Please share your motivation for joining our organization..."></textarea>
+                                    <p id="motivation-error" class="error-message">Please share your motivation for joining.</p>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Areas of Interest (select all that apply):</label>
+                                    <div class="grid md:grid-cols-2 gap-3 mt-3">
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="interests" value="disability-rights" class="mr-2">
+                                            <span class="text-gray-700 dark:text-gray-300">Disability Rights</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="interests" value="youth-empowerment" class="mr-2">
+                                            <span class="text-gray-700 dark:text-gray-300">Youth Empowerment</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="interests" value="gender-equality" class="mr-2">
+                                            <span class="text-gray-700 dark:text-gray-300">Gender Equality</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="interests" value="environmental-sustainability" class="mr-2">
+                                            <span class="text-gray-700 dark:text-gray-300">Environmental Sustainability</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="interests" value="education-access" class="mr-2">
+                                            <span class="text-gray-700 dark:text-gray-300">Education Access</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="interests" value="policy-governance" class="mr-2">
+                                            <span class="text-gray-700 dark:text-gray-300">Policy & Governance</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="interests" value="media-storytelling" class="mr-2">
+                                            <span class="text-gray-700 dark:text-gray-300">Media & Storytelling</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" name="interests" value="other" class="mr-2">
+                                            <span class="text-gray-700 dark:text-gray-300">Other</span>
+                                        </label>
+                                    </div>
+                                    <div class="mt-3" id="otherInterestContainer" style="display: none;">
+                                        <input type="text" id="otherInterest" name="otherInterest" class="form-input" placeholder="Please specify other areas of interest">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Declaration -->
+                        <div class="border-b border-gray-200 dark:border-gray-700 pb-6">
+                            <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Declaration
+                            </h5>
+                            <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                    I hereby declare that the information provided is true and complete. I agree to abide by the values, code of conduct, and policies of Advocacy Initiative Network.
+                                </p>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="signature">Digital Signature *</label>
+                                        <input type="text" id="signature" name="signature" class="form-input" required 
+                                               placeholder="Type your full name as digital signature">
+                                        <p id="signature-error" class="error-message">Digital signature is required.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="signatureDate">Date *</label>
+                                        <input type="date" id="signatureDate" name="signatureDate" class="form-input" required>
+                                        <p id="signatureDate-error" class="error-message">Date is required.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Data Protection Notice -->
+                        <div class="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg">
+                            <div class="flex items-start space-x-3">
+                                <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                </svg>
+                                <div>
+                                    <h6 class="font-semibold text-blue-900 dark:text-blue-100 mb-2">Data Protection Notice</h6>
+                                    <p class="text-sm text-blue-800 dark:text-blue-200">
+                                        Your personal information will be handled in accordance with our Data Protection Policy. It will only be used for membership purposes and will not be shared without your consent.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary text-lg py-4 px-8">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                </svg>
+                                Submit Membership Application
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Contact Section -->
+        <section id="contact" class="py-16 bg-gray-50 dark:bg-gray-800">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Get In Touch</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-green-600 mx-auto rounded-full"></div>
+                    <p class="text-xl text-gray-600 dark:text-gray-400 mt-6">
+                        Ready to make a difference? Contact us today and join our mission for inclusion.
+                    </p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div class="card fade-in">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Send us a Message</h3>
+                        <form id="contactForm" class="space-y-6" onsubmit="handleSubmit(event)">
+                            <div class="form-group">
+                                <label class="form-label" for="name">Full Name *</label>
+                                <input type="text" id="name" class="form-input" required 
+                                       placeholder="Enter your full name" 
+                                       pattern="[A-Za-z\s]{2,}" 
+                                       aria-describedby="name-error">
+                                <p id="name-error" class="error-message">Name should contain only letters and spaces (min 2 characters).</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email Address *</label>
+                                <input type="email" id="email" class="form-input" required 
+                                       placeholder="your.email@example.com" 
+                                       aria-describedby="email-error">
+                                <p id="email-error" class="error-message">Please enter a valid email address.</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="message">Message *</label>
+                                <textarea id="message" class="form-input" rows="5" required 
+                                          placeholder="Tell us how we can help you..." 
+                                          aria-describedby="message-error"></textarea>
+                                <p id="message-error" class="error-message">Message is required.</p>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-full text-lg py-4">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <div class="card slide-up">
+                            <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Contact Information</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 dark:text-white mb-1">Address</h4>
+                                        <p class="text-gray-600 dark:text-gray-400">
+                                            Compensation Worker's House<br>
+                                            3rd Floor, Suite 346<br>
+                                            Cairo Road, Lusaka, Zambia
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 dark:text-white mb-1">Email</h4>
+                                        <a href="mailto:Advocacyinitiativenetwork@gmail.com" 
+                                           class="text-blue-600 dark:text-blue-400 hover:underline">
+                                            Advocacyinitiativenetwork@gmail.com
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 dark:text-white mb-1">Business Hours</h4>
+                                        <p class="text-gray-600 dark:text-gray-400">
+                                            Monday - Friday: 8:00 AM - 5:00 PM<br>
+                                            Saturday: 9:00 AM - 1:00 PM<br>
+                                            Sunday: Closed
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card slide-up">
+                            <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Quick Actions</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <a href="mailto:Advocacyinitiativenetwork@gmail.com?subject=Membership%20Inquiry" 
+                                   class="btn btn-secondary text-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                                    </svg>
+                                    Join Membership
+                                </a>
+                                <a href="mailto:Advocacyinitiativenetwork@gmail.com?subject=Donation%20Inquiry" 
+                                   class="btn btn-accent text-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                    </svg>
+                                    Make a Donation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="grid lg:grid-cols-4 gap-8 mb-12">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <img src="Advocacy Initiative.png.png" alt="Advocacy Initiative Network Logo" 
+                             class="h-16 w-16 rounded-full border-2 border-gray-700 mr-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Advocacy Initiative Network</h3>
+                            <p class="text-gray-400">Inclusion Begins with a Story</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        We are dedicated to promoting the rights, inclusion, and dignity of persons with disabilities through the powerful medium of film and visual storytelling.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/SandsonmbeweSenior" target="_blank" 
+                           class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-300" 
+                           aria-label="Follow us on Facebook">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7v-3h3V9c0-2.76 1.79-4.5 4.5-4.5 1.27 0 2.5.25 2.5.25v3H16c-1.38 0-2 .62-2 1.75V12h3l-.5 3h-2.5v6.8c4.56-.93 8-4.96 8-9.8z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@advocacy.initiati" target="_blank" 
+                           class="w-10 h-10 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors duration-300" 
+                           aria-label="Follow us on TikTok">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69c-.49-.59-1.14-1.06-1.87-1.35A5.92 5.92 0 0015.5 5c-1.68 0-3.27.55-4.55 1.49V4.5H9.5v10.25c0 1.66 1.34 3 3 3s3-1.34 3-3V9.75c1.22.91 2.67 1.47 4.25 1.47V9.5c-.83 0-1.59-.22-2.25-.56v4.31c0 2.76-2.24 5-5 5s-5-2.24-5-5V4.5C7.5 3.12 8.62 2 10 2h1.5v2.25c1.28-.94 2.87-1.49 4.5-1.49 1.12 0 2.17.36 3.02 1.03.84.66 1.48 1.56 1.87 2.59V2h1.5v7.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5V6.69z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/advocacy.initiativenetwork" target="_blank" 
+                           class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center hover:from-purple-600 hover:to-pink-600 transition-all duration-300" 
+                           aria-label="Follow us on Instagram">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.06 1.97.24 2.67.50.73.27 1.38.65 2.01 1.28s1 1.28 1.28 2.01c.26.7.44 1.5.50 2.67.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.06 1.17-.24 1.97-.50 2.67-.27.73-.65 1.38-1.28 2.01s-1.28 1-2.01 1.28c-.7.26-1.5.44-2.67.50-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.06-1.97-.24-2.67-.50-.73-.27-1.38-.65-2.01-1.28s-1-1.28-1.28-2.01c-.26-.7-.44-1.5-.50-2.67-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.06-1.17.24-1.97.50-2.67.27-.73.65-1.38 1.28-2.01s1.28-1 2.01-1.28c.7-.26 1.5-.44 2.67-.50 1.27-.06 1.65-.07 4.85-.07m0-2.16C8.74 0 8.33.01 7.05.07c-1.3.06-2.19.27-2.97.58-.95.35-1.81.85-2.64 1.68S.24 3.79.24 4.74c-.31.78-.52 1.67-.58 2.97C.01 8.99 0 9.4 0 12s.01 3.01.07 4.29c.06 1.3.27 2.19.58 2.97.35.95.85 1.81 1.68 2.64s1.69 1.33 2.64 1.68c.78.31 1.67.52 2.97.58 1.28.06 1.69.07 4.29.07s3.01-.01 4.29-.07c1.3-.06 2.19-.27 2.97-.58.95-.35 1.81-.85 2.64-1.68s1.33-1.69 1.68-2.64c.31-.78.52-1.67.58-2.97.06-1.28.07-1.69.07-4.29s-.01-3.01-.07-4.29c-.06-1.3-.27-2.19-.58-2.97-.35-.95-.85-1.81-1.68-2.64s-1.69-1.33-2.64-1.68c-.78-.31-1.67-.52-2.97-.58C15.01.01 14.6 0 12 0z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About Us</a></li>
+                        <li><a href="#mission" class="text-gray-400 hover:text-white transition-colors duration-300">Mission & Vision</a></li>
+                        <li><a href="#objectives" class="text-gray-400 hover:text-white transition-colors duration-300">Objectives</a></li>
+                        <li><a href="#governance" class="text-gray-400 hover:text-white transition-colors duration-300">Governance</a></li>
+                        <li><a href="#membership" class="text-gray-400 hover:text-white transition-colors duration-300">Membership</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Stay updated with our latest news and events.</p>
+                    <form id="newsletterForm" class="space-y-3" onsubmit="handleNewsletterSubmit(event)">
+                        <input type="email" id="newsletter-email" 
+                               class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                               placeholder="Enter your email" required 
+                               aria-describedby="newsletter-email-error">
+                        <p id="newsletter-email-error" class="error-message text-red-400">Please enter a valid email address.</p>
+                        <button type="submit" class="btn btn-primary w-full">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">
+                        &copy; 2025 Advocacy Initiative Network. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="mailto:Advocacyinitiativenetwork@gmail.com?subject=Donation%20Inquiry" 
+                           class="text-blue-400 hover:text-blue-300 transition-colors duration-300">
+                            Donate Now
+                        </a>
+                        <a href="mailto:Advocacyinitiativenetwork@gmail.com" 
+                           class="text-blue-400 hover:text-blue-300 transition-colors duration-300">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal video-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeVideoModal()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <div id="videoContent" class="w-full h-full">
+                <!-- Video content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Modal -->
+    <div id="photoModal" class="modal photo-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePhotoModal()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <img id="photoContent" src="" alt="Gallery Photo">
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" 
+            class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 opacity-0 invisible" 
+            aria-label="Back to top">
+        <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <!-- Enhanced JavaScript -->
     <script>
+        // Carousel functionality
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-item');
         let progressInterval;
 
         function showSlide(index) {
             slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (i === index) slide.classList.add('active');
+                slide.classList.toggle('active', i === index);
             });
             resetProgress();
         }
@@ -528,121 +1734,744 @@
 
         function resetProgress() {
             const progressBar = document.getElementById('carouselProgress');
-            progressBar.style.width = '0%';
-            clearInterval(progressInterval);
-            progressInterval = setInterval(() => {
-                progressBar.style.width = `${(parseInt(progressBar.style.width) || 0) + 20 / (5000 / 100)}%`;
-            }, 100);
+            if (progressBar) {
+                progressBar.style.width = '0%';
+                clearInterval(progressInterval);
+                progressInterval = setInterval(() => {
+                    const currentWidth = parseInt(progressBar.style.width) || 0;
+                    progressBar.style.width = `${currentWidth + 20 / (5000 / 100)}%`;
+                }, 100);
+            }
         }
 
+        // Auto-advance carousel
         setInterval(nextSlide, 5000);
         resetProgress();
 
+        // Enhanced form validation
+        function validateForm(formId) {
+            const form = document.getElementById(formId);
+            let isValid = true;
+            
+            form.querySelectorAll('input[required], textarea[required]').forEach(input => {
+                const error = document.getElementById(`${input.id}-error`);
+                if (!input.value.trim()) {
+                    showError(input, error, 'This field is required.');
+                    isValid = false;
+                } else {
+                    hideError(input, error);
+                }
+                
+                // Email validation
+                if (input.type === 'email' && input.value.trim()) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(input.value)) {
+                        showError(input, error, 'Please enter a valid email address.');
+                        isValid = false;
+                    }
+                }
+                
+                // Name validation
+                if (input.id === 'name' && input.value.trim()) {
+                    const nameRegex = /^[A-Za-z\s]{2,}$/;
+                    if (!nameRegex.test(input.value)) {
+                        showError(input, error, 'Name should contain only letters and spaces (min 2 characters).');
+                        isValid = false;
+                    }
+                }
+            });
+            
+            return isValid;
+        }
+
+        function showError(input, errorElement, message) {
+            input.classList.add('error');
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+        }
+
+        function hideError(input, errorElement) {
+            input.classList.remove('error');
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+        }
+
+        // Form submission handlers
         function handleSubmit(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            const subject = encodeURIComponent('Contact Inquiry');
-            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nMessage: ${message}`);
+            if (!validateForm('contactForm')) return;
+            
+            const formData = new FormData(e.target);
+            const name = formData.get('name') || document.getElementById('name').value;
+            const email = formData.get('email') || document.getElementById('email').value;
+            const message = formData.get('message') || document.getElementById('message').value;
+            
+            const subject = encodeURIComponent('Contact Inquiry - Advocacy Initiative Network');
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nMessage: ${message}\n\nSent from: ${window.location.href}`);
+            
             window.location.href = `mailto:Advocacyinitiativenetwork@gmail.com?subject=${subject}&body=${body}`;
             e.target.reset();
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            
+            showNotification('Thank you! Your message has been sent successfully.', 'success');
         }
 
         function handleWhistleblowerSubmit(e) {
             e.preventDefault();
-            const name = document.getElementById('whistleblower-name').value || 'Anonymous';
-            const email = document.getElementById('whistleblower-email').value || 'Not provided';
-            const message = document.getElementById('whistleblower-message').value;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (email && !emailRegex.test(email)) {
-                alert('Please enter a valid email address or leave it blank.');
+            const message = document.getElementById('whistleblower-message');
+            const messageError = document.getElementById('whistleblower-message-error');
+            
+            if (!message.value.trim()) {
+                showError(message, messageError, 'Report details are required.');
                 return;
             }
-            const subject = encodeURIComponent('Whistleblower Report');
-            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nReport Details: ${message}`);
+            
+            hideError(message, messageError);
+            
+            const name = document.getElementById('whistleblower-name').value || 'Anonymous';
+            const email = document.getElementById('whistleblower-email').value || 'Not provided';
+            const subject = encodeURIComponent('Whistleblower Report - Advocacy Initiative Network');
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nReport Details: ${message.value}\n\nSent from: ${window.location.href}`);
+            
             window.location.href = `mailto:Advocacyinitiativenetwork@gmail.com?subject=${subject}&body=${body}`;
             e.target.reset();
-            confetti({ particleCount: 150, spread: 90, colors: ['#ff0000', '#ffffff'] });
-            alert('Your report has been submitted confidentially. Thank you for your submission!');
-        }
-
-        function updateFormProgress() {
-            const inputs = [
-                document.getElementById('whistleblower-name').value,
-                document.getElementById('whistleblower-email').value,
-                document.getElementById('whistleblower-message').value
-            ];
-            const filled = inputs.filter(val => val.length > 0).length;
-            const progress = (filled / inputs.length) * 100;
-            document.getElementById('formProgress').style.width = `${progress}%`;
+            
+            showNotification('Your report has been submitted confidentially. Thank you for your courage.', 'success');
         }
 
         function handleNewsletterSubmit(e) {
             e.preventDefault();
+            if (!validateForm('newsletterForm')) return;
+            
             const email = document.getElementById('newsletter-email').value;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            const subject = encodeURIComponent('Newsletter Subscription');
-            const body = encodeURIComponent(`Email: ${email}\nRequest: Subscribe to newsletter`);
+            const subject = encodeURIComponent('Newsletter Subscription - Advocacy Initiative Network');
+            const body = encodeURIComponent(`Email: ${email}\nRequest: Subscribe to newsletter\n\nSent from: ${window.location.href}`);
+            
             window.location.href = `mailto:Advocacyinitiativenetwork@gmail.com?subject=${subject}&body=${body}`;
             e.target.reset();
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-            alert('Thank you for subscribing to our newsletter!');
+            
+            showNotification('Thank you for subscribing to our newsletter!', 'success');
         }
 
-        // Toggle Support Menu
-        document.getElementById('supportBtn').addEventListener('click', () => {
-            const menu = document.getElementById('supportMenu');
-            menu.classList.toggle('hidden');
-        });
-
-        // Video Modal
-        document.getElementById('videoBtn').addEventListener('click', () => {
-            document.getElementById('videoModal').style.display = 'flex';
-        });
-
-        function closeModal() {
-            document.getElementById('videoModal').style.display = 'none';
+        // Form progress tracking
+        function updateFormProgress() {
+            const inputs = [
+                document.getElementById('whistleblower-name')?.value || '',
+                document.getElementById('whistleblower-email')?.value || '',
+                document.getElementById('whistleblower-message')?.value || ''
+            ];
+            
+            const filled = inputs.filter(val => val.length > 0).length;
+            const progress = (filled / inputs.length) * 100;
+            
+            const progressBar = document.getElementById('formProgress');
+            const progressPercentage = document.getElementById('progressPercentage');
+            
+            if (progressBar && progressPercentage) {
+                progressBar.style.width = `${progress}%`;
+                progressPercentage.textContent = `${Math.round(progress)}% Complete`;
+                
+                // Change color based on completion
+                if (progress === 100) {
+                    progressBar.className = 'bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full transition-all duration-300';
+                } else {
+                    progressBar.className = 'bg-gradient-to-r from-red-500 to-orange-500 h-3 rounded-full transition-all duration-300';
+                }
+            }
         }
 
-        // Donate Button Confetti
-        document.getElementById('donateBtn').addEventListener('mouseover', () => {
-            confetti({ particleCount: 50, spread: 50, origin: { y: 0.6 } });
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 max-w-sm transform transition-all duration-300 translate-x-full`;
+            
+            const bgColor = type === 'success' ? 'bg-green-500' : 'bg-blue-500';
+            notification.className += ` ${bgColor} text-white`;
+            
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 5000);
+        }
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Button Ripple Effect
-        document.querySelectorAll('.ripple').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const rect = button.getBoundingClientRect();
-                const ripple = document.createElement('span');
-                ripple.className = 'ripple';
-                button.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 600);
+        // Enhanced smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 100;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
-        // Scroll Animation Observer
+        // Theme toggle with enhanced functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.getElementById('html');
+        
+        function updateThemeIcon() {
+            const icon = themeToggle.querySelector('svg');
+            if (html.classList.contains('dark')) {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>';
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+            }
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            updateThemeIcon();
+        });
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+        updateThemeIcon();
+
+        // Enhanced search functionality
+        const searchBar = document.getElementById('searchBar');
+        if (searchBar) {
+            let searchTimeout;
+            
+            searchBar.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    const query = e.target.value.toLowerCase().trim();
+                    
+                    // Remove previous highlights
+                    document.querySelectorAll('.search-highlight').forEach(el => {
+                        el.classList.remove('search-highlight', 'bg-yellow-200', 'dark:bg-yellow-800');
+                    });
+                    
+                    if (query.length > 2) {
+                        // Search through text content
+                        const walker = document.createTreeWalker(
+                            document.body,
+                            NodeFilter.SHOW_TEXT,
+                            null,
+                            false
+                        );
+                        
+                        const textNodes = [];
+                        let node;
+                        while (node = walker.nextNode()) {
+                            if (node.textContent.toLowerCase().includes(query)) {
+                                textNodes.push(node);
+                            }
+                        }
+                        
+                        // Highlight matches
+                        textNodes.forEach(textNode => {
+                            const parent = textNode.parentNode;
+                            if (parent.nodeType === Node.ELEMENT_NODE && 
+                                !parent.closest('script, style, nav, footer')) {
+                                parent.classList.add('search-highlight', 'bg-yellow-200', 'dark:bg-yellow-800');
+                                parent.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                        });
+                    }
+                }, 300);
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
-        document.querySelectorAll('.slide-in').forEach(section => {
-            observer.observe(section);
+        // Observe elements for animation
+        document.querySelectorAll('.fade-in, .slide-up').forEach(el => {
+            observer.observe(el);
         });
+
+        // Real-time form validation
+        document.querySelectorAll('input, textarea').forEach(input => {
+            input.addEventListener('blur', () => {
+                const error = document.getElementById(`${input.id}-error`);
+                if (input.required && !input.value.trim()) {
+                    showError(input, error, 'This field is required.');
+                } else if (input.type === 'email' && input.value.trim()) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(input.value)) {
+                        showError(input, error, 'Please enter a valid email address.');
+                    } else {
+                        hideError(input, error);
+                    }
+                } else if (input.id === 'name' && input.value.trim()) {
+                    const nameRegex = /^[A-Za-z\s]{2,}$/;
+                    if (!nameRegex.test(input.value)) {
+                        showError(input, error, 'Name should contain only letters and spaces (min 2 characters).');
+                    } else {
+                        hideError(input, error);
+                    }
+                } else {
+                    hideError(input, error);
+                }
+            });
+        });
+
+        // Initialize tooltips
+        document.querySelectorAll('[data-tooltip]').forEach(element => {
+            element.addEventListener('mouseenter', (e) => {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'absolute z-50 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg whitespace-nowrap';
+                tooltip.textContent = e.target.getAttribute('data-tooltip');
+                tooltip.style.top = `${e.target.offsetTop - 40}px`;
+                tooltip.style.left = `${e.target.offsetLeft + (e.target.offsetWidth / 2) - (tooltip.offsetWidth / 2)}px`;
+                
+                document.body.appendChild(tooltip);
+                e.target._tooltip = tooltip;
+            });
+            
+            element.addEventListener('mouseleave', (e) => {
+                if (e.target._tooltip) {
+                    document.body.removeChild(e.target._tooltip);
+                    e.target._tooltip = null;
+                }
+            });
+        });
+
+        // Performance optimization: Lazy load images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Accessibility improvements
+        document.addEventListener('keydown', (e) => {
+            // Escape key closes mobile menu
+            if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Add skip link functionality
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab' && e.target === document.body) {
+                const skipLink = document.querySelector('a[href="#main-content"]');
+                if (skipLink) {
+                    skipLink.focus();
+                }
+            }
+        });
+
+        // Gallery functionality
+        document.querySelectorAll('.gallery-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.getAttribute('data-tab');
+                
+                // Update active tab
+                document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show target content
+                document.querySelectorAll('.gallery-content').forEach(content => {
+                    content.classList.remove('active');
+                    content.classList.add('hidden');
+                });
+                
+                const targetContent = document.getElementById(targetTab);
+                if (targetContent) {
+                    targetContent.classList.remove('hidden');
+                    targetContent.classList.add('active');
+                }
+            });
+        });
+
+        // Video modal functionality
+        function openVideoModal(videoId) {
+            const modal = document.getElementById('videoModal');
+            const content = document.getElementById('videoContent');
+            
+            // Sample video content - replace with actual video URLs
+            const videos = {
+                'video1': {
+                    title: 'Inclusive Film Making Workshop',
+                    url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with actual video URL
+                    description: 'Join us as we explore the power of inclusive storytelling in our community workshop.'
+                },
+                'video2': {
+                    title: 'Advocacy Campaign Launch',
+                    url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with actual video URL
+                    description: 'Witness the launch of our latest advocacy campaign for disability rights.'
+                },
+                'video3': {
+                    title: 'Community Outreach Program',
+                    url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with actual video URL
+                    description: 'See how we\'re making a difference in communities across Zambia.'
+                }
+            };
+            
+            const video = videos[videoId];
+            if (video) {
+                content.innerHTML = `
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">${video.title}</h3>
+                        <div class="aspect-w-16 aspect-h-9 mb-4">
+                            <iframe src="${video.url}" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen
+                                    class="w-full h-full">
+                            </iframe>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400">${video.description}</p>
+                    </div>
+                `;
+            }
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Stop video playback
+            const iframe = modal.querySelector('iframe');
+            if (iframe) {
+                iframe.src = iframe.src;
+            }
+        }
+
+        // Photo modal functionality
+        function openPhotoModal(photoId) {
+            const modal = document.getElementById('photoModal');
+            const content = document.getElementById('photoContent');
+            
+            // Sample photo content - replace with actual photo URLs
+            const photos = {
+                'photo1': {
+                    src: 'https://images.unsplash.com/photo-1593113598332-cd3d30f39bf5?auto=format&fit=crop&w=800&q=80',
+                    alt: 'Film Production Team',
+                    title: 'Film Production Team'
+                },
+                'photo2': {
+                    src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80',
+                    alt: 'Advocacy Meeting',
+                    title: 'Advocacy Meeting'
+                },
+                'photo3': {
+                    src: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
+                    alt: 'Community Workshop',
+                    title: 'Community Workshop'
+                },
+                'photo4': {
+                    src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
+                    alt: 'Youth Empowerment Session',
+                    title: 'Youth Empowerment Session'
+                },
+                'photo5': {
+                    src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80',
+                    alt: 'Policy Discussion',
+                    title: 'Policy Discussion'
+                },
+                'photo6': {
+                    src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80',
+                    alt: 'Team Collaboration',
+                    title: 'Team Collaboration'
+                },
+                'photo7': {
+                    src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
+                    alt: 'Film Screening Event',
+                    title: 'Film Screening Event'
+                },
+                'photo8': {
+                    src: 'https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=800&q=80',
+                    alt: 'Community Celebration',
+                    title: 'Community Celebration'
+                }
+            };
+            
+            const photo = photos[photoId];
+            if (photo) {
+                content.src = photo.src;
+                content.alt = photo.alt;
+                content.title = photo.title;
+            }
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePhotoModal() {
+            const modal = document.getElementById('photoModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modals on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+                closePhotoModal();
+            }
+        });
+
+        // Close modals on background click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Enhanced membership form functionality
+        function handleMembershipSubmit(e) {
+            e.preventDefault();
+            
+            if (!validateMembershipForm()) return;
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // Get selected interests
+            const interests = [];
+            document.querySelectorAll('input[name="interests"]:checked').forEach(checkbox => {
+                interests.push(checkbox.value);
+            });
+            data.interests = interests;
+            
+            // Create email body
+            const subject = encodeURIComponent('Membership Application - Advocacy Initiative Network');
+            const body = encodeURIComponent(`
+MEMBERSHIP APPLICATION FORM
+
+Personal Information:
+Full Name: ${data.fullName}
+Date of Birth: ${data.dateOfBirth}
+Gender: ${data.gender}
+Nationality: ${data.nationality}
+National ID/Passport: ${data.nationalId}
+
+Contact Details:
+Address: ${data.address}
+City/Town: ${data.city}
+Province: ${data.province}
+Phone: ${data.phone}
+Email: ${data.email}
+
+Professional Background:
+Occupation: ${data.occupation || 'Not provided'}
+Organization: ${data.organization || 'Not provided'}
+Skills: ${data.skills || 'Not provided'}
+
+Membership Type: ${data.membershipType}
+
+Motivation: ${data.motivation}
+
+Areas of Interest: ${interests.join(', ') || 'None selected'}
+${data.otherInterest ? `Other: ${data.otherInterest}` : ''}
+
+Declaration:
+Digital Signature: ${data.signature}
+Date: ${data.signatureDate}
+
+---
+Sent from: ${window.location.href}
+            `);
+            
+            window.location.href = `mailto:Advocacyinitiativenetwork@gmail.com?subject=${subject}&body=${body}`;
+            e.target.reset();
+            
+            showNotification('Thank you! Your membership application has been submitted successfully. We will contact you soon.', 'success');
+        }
+
+        function validateMembershipForm() {
+            const form = document.getElementById('membershipForm');
+            let isValid = true;
+            
+            // Validate required fields
+            const requiredFields = [
+                'fullName', 'dateOfBirth', 'nationality', 'nationalId', 
+                'address', 'city', 'province', 'phone', 'email', 
+                'motivation', 'signature', 'signatureDate'
+            ];
+            
+            requiredFields.forEach(fieldName => {
+                const field = form.querySelector(`[name="${fieldName}"]`);
+                const error = document.getElementById(`${fieldName}-error`);
+                
+                if (!field.value.trim()) {
+                    showError(field, error, 'This field is required.');
+                    isValid = false;
+                } else {
+                    hideError(field, error);
+                }
+            });
+            
+            // Validate gender selection
+            const genderField = form.querySelector('input[name="gender"]:checked');
+            const genderError = document.getElementById('gender-error');
+            if (!genderField) {
+                genderError.style.display = 'block';
+                isValid = false;
+            } else {
+                genderError.style.display = 'none';
+            }
+            
+            // Validate membership type selection
+            const membershipTypeField = form.querySelector('input[name="membershipType"]:checked');
+            const membershipTypeError = document.getElementById('membershipType-error');
+            if (!membershipTypeField) {
+                membershipTypeError.style.display = 'block';
+                isValid = false;
+            } else {
+                membershipTypeError.style.display = 'none';
+            }
+            
+            // Validate email format
+            const emailField = form.querySelector('[name="email"]');
+            const emailError = document.getElementById('email-error');
+            if (emailField.value.trim()) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailField.value)) {
+                    showError(emailField, emailError, 'Please enter a valid email address.');
+                    isValid = false;
+                }
+            }
+            
+            return isValid;
+        }
+
+        // Handle "Other" interest checkbox
+        document.querySelector('input[name="interests"][value="other"]').addEventListener('change', function() {
+            const container = document.getElementById('otherInterestContainer');
+            if (this.checked) {
+                container.style.display = 'block';
+            } else {
+                container.style.display = 'none';
+                document.getElementById('otherInterest').value = '';
+            }
+        });
+
+        // Form progress tracking for membership form
+        function updateMembershipFormProgress() {
+            const form = document.getElementById('membershipForm');
+            const sections = form.querySelectorAll('.border-b');
+            let completedSections = 0;
+            
+            sections.forEach(section => {
+                const inputs = section.querySelectorAll('input[required], textarea[required]');
+                const radioGroups = section.querySelectorAll('input[type="radio"][required]');
+                
+                let sectionComplete = true;
+                
+                // Check required inputs
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        sectionComplete = false;
+                    }
+                });
+                
+                // Check radio groups
+                radioGroups.forEach(radio => {
+                    const name = radio.name;
+                    const checked = section.querySelector(`input[name="${name}"]:checked`);
+                    if (!checked) {
+                        sectionComplete = false;
+                    }
+                });
+                
+                if (sectionComplete) {
+                    completedSections++;
+                }
+            });
+            
+            const progress = (completedSections / sections.length) * 100;
+            console.log(`Form progress: ${progress}%`);
+        }
+
+        // Add progress tracking to membership form inputs
+        document.querySelectorAll('#membershipForm input, #membershipForm textarea').forEach(input => {
+            input.addEventListener('input', updateMembershipFormProgress);
+            input.addEventListener('change', updateMembershipFormProgress);
+        });
+
+        console.log('Advocacy Initiative Network website loaded successfully!');
     </script>
 </body>
-</html>
+</html> 
