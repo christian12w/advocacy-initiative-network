@@ -1225,128 +1225,248 @@
               <h2 class="text-2xl font-bold mb-1">Membership Application Form</h2>
               <p class="mb-2 text-sm text-gray-500">Empowering Communities | Advancing Equity | Driving Change</p>
             </div>
-            <form id="membershipForm" class="space-y-6">
+            <form id="membershipForm"
+                  action="https://formspree.io/f/mvgqwbpv"
+                  method="POST"
+                  class="space-y-8"
+                  autocomplete="off"
+                  aria-label="Membership Application Form">
               <!-- Personal Information -->
-              <div>
-                <h3 class="text-lg font-semibold mb-2 border-b border-gray-200 dark:border-gray-700 pb-1">Personal Information</h3>
+              <fieldset>
+                <legend class="font-semibold text-lg mb-2">Personal Information <span class="text-xs text-gray-400">(All fields optional unless specified)</span></legend>
                 <div class="form-group">
-                  <label class="form-label" for="fullName">Full Name *</label>
-                  <input class="form-input" type="text" id="fullName" name="fullName" required>
+                  <label class="form-label" for="fullName">Full Name <span class="text-red-500">*</span></label>
+                  <input class="form-input" type="text" id="fullName" name="Full Name" required aria-required="true">
                 </div>
-                <div class="form-group flex space-x-2">
+                <div class="form-group">
+                  <label class="form-label" for="preferredName">Preferred Name (if different)</label>
+                  <input class="form-input" type="text" id="preferredName" name="Preferred Name">
+                </div>
+                <div class="form-group flex flex-wrap gap-2">
                   <div>
-                    <label class="form-label" for="dob">Date of Birth *</label>
-                    <input class="form-input" type="date" id="dob" name="dob" required>
+                    <label class="form-label" for="dob">Date of Birth</label>
+                    <input class="form-input" type="date" id="dob" name="Date of Birth">
                   </div>
                   <div>
-                    <label class="form-label" for="gender">Gender *</label>
-                    <select class="form-input" id="gender" name="gender" required>
-                      <option value="">Select</option>
-                      <option>Male</option>
-                      <option>Female</option>
-                      <option>Other</option>
-                    </select>
+                    <label class="form-label">Gender Identity</label>
+                    <div class="flex flex-wrap gap-2">
+                      <label><input type="radio" name="Gender" value="Male"> Male</label>
+                      <label><input type="radio" name="Gender" value="Female"> Female</label>
+                      <label><input type="radio" name="Gender" value="Non-Binary"> Non-Binary</label>
+                      <label><input type="radio" name="Gender" value="Self-Describe"> Prefer to Self-Describe:</label>
+                      <input class="form-input inline-block w-32" type="text" name="Gender Self-Describe">
+                      <label><input type="radio" name="Gender" value="Prefer Not to Say"> Prefer Not to Say</label>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="nationality">Nationality *</label>
-                  <input class="form-input" type="text" id="nationality" name="nationality" required>
+                  <label class="form-label" for="pronouns">Pronouns (e.g., she/her, he/him, they/them)</label>
+                  <input class="form-input" type="text" id="pronouns" name="Pronouns">
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="idNumber">National ID / Passport Number *</label>
-                  <input class="form-input" type="text" id="idNumber" name="idNumber" required>
+                  <label class="form-label" for="nationality">Nationality or Cultural Background</label>
+                  <input class="form-input" type="text" id="nationality" name="Nationality">
                 </div>
-              </div>
+                <div class="form-group">
+                  <label class="form-label" for="idNumber">National ID / Passport Number (Optional)</label>
+                  <input class="form-input" type="text" id="idNumber" name="National ID or Passport Number">
+                </div>
+              </fieldset>
+              <!-- Disability Information -->
+              <fieldset>
+                <legend class="font-semibold text-lg mb-2">Disability Information <span class="text-xs text-gray-400">(Optional)</span></legend>
+                <div class="form-group">
+                  <label class="form-label">Do you identify as a person with a disability?</label>
+                  <div class="flex gap-4">
+                    <label><input type="radio" name="Disability" value="Yes"> Yes</label>
+                    <label><input type="radio" name="Disability" value="No"> No</label>
+                    <label><input type="radio" name="Disability" value="Prefer Not to Say"> Prefer Not to Say</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">If yes, please specify the type(s) of disability (tick all that apply):</label>
+                  <div class="flex flex-wrap gap-2">
+                    <label><input type="checkbox" name="Disability Type" value="Physical Disability"> Physical Disability</label>
+                    <label><input type="checkbox" name="Disability Type" value="Visual Impairment"> Visual Impairment</label>
+                    <label><input type="checkbox" name="Disability Type" value="Hearing Impairment"> Hearing Impairment</label>
+                    <label><input type="checkbox" name="Disability Type" value="Intellectual Disability"> Intellectual Disability</label>
+                    <label><input type="checkbox" name="Disability Type" value="Mental Health Condition"> Mental Health Condition</label>
+                    <label><input type="checkbox" name="Disability Type" value="Chronic Illness"> Chronic Illness</label>
+                    <label><input type="checkbox" name="Disability Type" value="Neurodiversity"> Neurodiversity (e.g., autism, ADHD)</label>
+                    <label><input type="checkbox" name="Disability Type" value="Other"> Other: <input class="form-input inline-block w-32" type="text" name="Disability Other"></label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="disabilityNumber">Disability Number (if applicable, optional)</label>
+                  <input class="form-input" type="text" id="disabilityNumber" name="Disability Number">
+                  <p class="text-xs text-gray-400">Note: Providing a disability number is optional and will be used solely for accessibility accommodations and program planning.</p>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="accessibility">Accessibility Requirements</label>
+                  <textarea class="form-input" id="accessibility" name="Accessibility Requirements" rows="2" placeholder="Please specify any accommodations needed to participate fully (e.g., sign language interpreter, wheelchair access, digital accessibility tools, sensory-friendly spaces)"></textarea>
+                </div>
+              </fieldset>
               <!-- Contact Details -->
-              <div>
-                <h3 class="text-lg font-semibold mb-2 border-b border-gray-200 dark:border-gray-700 pb-1">Contact Details</h3>
+              <fieldset>
+                <legend class="font-semibold text-lg mb-2">Contact Details <span class="text-xs text-gray-400">(All fields optional unless specified)</span></legend>
                 <div class="form-group">
-                  <label class="form-label" for="address">Residential Address *</label>
-                  <input class="form-input" type="text" id="address" name="address" required>
+                  <label class="form-label" for="address">Residential Address</label>
+                  <input class="form-input" type="text" id="address" name="Residential Address">
                 </div>
-                <div class="form-group flex space-x-2">
+                <div class="form-group flex flex-wrap gap-2">
                   <div>
-                    <label class="form-label" for="city">City/Town *</label>
-                    <input class="form-input" type="text" id="city" name="city" required>
+                    <label class="form-label" for="city">City/Town</label>
+                    <input class="form-input" type="text" id="city" name="City">
                   </div>
                   <div>
-                    <label class="form-label" for="province">Province *</label>
-                    <input class="form-input" type="text" id="province" name="province" required>
+                    <label class="form-label" for="province">Province/Region</label>
+                    <input class="form-input" type="text" id="province" name="Province">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="phone">Phone Number *</label>
-                  <input class="form-input" type="tel" id="phone" name="phone" required>
+                  <label class="form-label" for="phone">Phone Number</label>
+                  <input class="form-input" type="tel" id="phone" name="Phone Number">
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="email">Email Address *</label>
-                  <input class="form-input" type="email" id="email" name="email" required>
+                  <label class="form-label" for="email">Email Address <span class="text-red-500">*</span></label>
+                  <input class="form-input" type="email" id="email" name="Email" required aria-required="true">
                 </div>
-              </div>
+                <div class="form-group">
+                  <label class="form-label">Preferred Communication Method</label>
+                  <div class="flex flex-wrap gap-2">
+                    <label><input type="checkbox" name="Preferred Communication Method" value="Email"> Email</label>
+                    <label><input type="checkbox" name="Preferred Communication Method" value="Phone"> Phone</label>
+                    <label><input type="checkbox" name="Preferred Communication Method" value="Text/SMS"> Text/SMS</label>
+                    <label><input type="checkbox" name="Preferred Communication Method" value="WhatsApp"> WhatsApp</label>
+                    <label><input type="checkbox" name="Preferred Communication Method" value="Other"> Other: <input class="form-input inline-block w-32" type="text" name="Preferred Communication Other"></label>
+                  </div>
+                </div>
+              </fieldset>
+              <!-- Emergency Contact -->
+              <fieldset>
+                <legend class="font-semibold text-lg mb-2">Emergency Contact Information <span class="text-xs text-gray-400">(Optional)</span></legend>
+                <div class="form-group">
+                  <label class="form-label" for="emergencyName">Emergency Contact Name</label>
+                  <input class="form-input" type="text" id="emergencyName" name="Emergency Contact Name">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="emergencyRelation">Relationship to You</label>
+                  <input class="form-input" type="text" id="emergencyRelation" name="Emergency Contact Relationship">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="emergencyPhone">Phone Number</label>
+                  <input class="form-input" type="tel" id="emergencyPhone" name="Emergency Contact Phone">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="emergencyEmail">Email Address (if available)</label>
+                  <input class="form-input" type="email" id="emergencyEmail" name="Emergency Contact Email">
+                </div>
+              </fieldset>
+              <!-- Community Affiliations -->
+              <fieldset>
+                <legend class="font-semibold text-lg mb-2">Community Affiliations <span class="text-xs text-gray-400">(Optional)</span></legend>
+                <div class="form-group">
+                  <label class="form-label" for="affiliations">Are you affiliated with any community or cultural groups? If yes, please list (e.g., indigenous groups, religious communities, advocacy networks):</label>
+                  <textarea class="form-input" id="affiliations" name="Community Affiliations" rows="2"></textarea>
+                </div>
+              </fieldset>
               <!-- Professional Background -->
-              <div>
-                <h3 class="text-lg font-semibold mb-2 border-b border-gray-200 dark:border-gray-700 pb-1">Professional Background <span class="text-xs text-gray-400">(Optional)</span></h3>
+              <fieldset>
+                <legend class="font-semibold text-lg mb-2">Professional Background <span class="text-xs text-gray-400">(Optional)</span></legend>
                 <div class="form-group">
                   <label class="form-label" for="occupation">Occupation/Field of Work</label>
-                  <input class="form-input" type="text" id="occupation" name="occupation">
+                  <input class="form-input" type="text" id="occupation" name="Occupation">
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="organization">Organization (if applicable)</label>
-                  <input class="form-input" type="text" id="organization" name="organization">
+                  <input class="form-input" type="text" id="organization" name="Organization">
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="skills">Skills or Expertise You’d Like to Share</label>
-                  <input class="form-input" type="text" id="skills" name="skills">
+                  <input class="form-input" type="text" id="skills" name="Skills">
                 </div>
-              </div>
+              </fieldset>
+              <!-- Advocacy Experience -->
+              <fieldset>
+                <legend class="font-semibold text-lg mb-2">Advocacy Experience <span class="text-xs text-gray-400">(Optional)</span></legend>
+                <div class="form-group">
+                  <label class="form-label">Have you been involved in advocacy or community work before?</label>
+                  <div class="flex gap-4">
+                    <label><input type="radio" name="Advocacy Experience" value="Yes"> Yes</label>
+                    <label><input type="radio" name="Advocacy Experience" value="No"> No</label>
+                    <label><input type="radio" name="Advocacy Experience" value="Prefer Not to Say"> Prefer Not to Say</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="advocacyDesc">If yes, please briefly describe your experience:</label>
+                  <textarea class="form-input" id="advocacyDesc" name="Advocacy Experience Description" rows="2"></textarea>
+                </div>
+              </fieldset>
               <!-- Membership Type -->
-              <div>
-                <h3 class="text-lg font-semibold mb-2 border-b border-gray-200 dark:border-gray-700 pb-1">Membership Type</h3>
+              <fieldset>
+                <legend class="font-semibold text-lg mb-2">Membership Type</legend>
                 <div class="form-group">
-                  <label class="form-label" for="membershipType">Select Category *</label>
-                  <select class="form-input" id="membershipType" name="membershipType" required>
-                    <option value="">Select</option>
-                    <option>General Member</option>
-                    <option>Volunteer Member</option>
-                    <option>Advocacy Member</option>
-                    <option>Donor Member</option>
-                  </select>
+                  <label class="form-label">Please select your preferred membership category:</label>
+                  <div class="flex flex-wrap gap-2">
+                    <label><input type="radio" name="Membership Type" value="General Member" required> General Member – Participate in events and receive updates</label>
+                    <label><input type="radio" name="Membership Type" value="Volunteer Member"> Volunteer Member – Support programs and outreach activities</label>
+                    <label><input type="radio" name="Membership Type" value="Advocacy Member"> Advocacy Member – Contribute to campaigns and policy work</label>
+                    <label><input type="radio" name="Membership Type" value="Donor Member"> Donor Member – Provide financial or material support</label>
+                  </div>
                 </div>
-              </div>
+              </fieldset>
               <!-- Motivation & Interests -->
-              <div>
-                <h3 class="text-lg font-semibold mb-2 border-b border-gray-200 dark:border-gray-700 pb-1">Motivation & Interests</h3>
+              <fieldset>
+                <legend class="font-semibold text-lg mb-2">Motivation & Interests</legend>
                 <div class="form-group">
-                  <textarea class="form-input" id="motivation" name="motivation" rows="2"></textarea>
+                  <label class="form-label" for="motivation">Why do you want to join the Advocacy Initiative Network?</label>
+                  <textarea class="form-input" id="motivation" name="Motivation" rows="2"></textarea>
                 </div>
                 <div class="form-group">
                   <label class="form-label">Areas of Interest (tick all that apply):</label>
                   <div class="flex flex-wrap gap-2">
-                    <label><input type="checkbox" name="interest" value="Disability Rights"> Disability Rights</label>
-                    <label><input type="checkbox" name="interest" value="Youth Empowerment"> Youth Empowerment</label>
-                    <label><input type="checkbox" name="interest" value="Gender Equality"> Gender Equality</label>
-                    <label><input type="checkbox" name="interest" value="Environmental Sustainability"> Environmental Sustainability</label>
-                    <label><input type="checkbox" name="interest" value="Education Access"> Education Access</label>
-                    <label><input type="checkbox" name="interest" value="Policy & Governance"> Policy & Governance</label>
-                    <label><input type="checkbox" name="interest" value="Media & Storytelling"> Media & Storytelling</label>
-                    <label><input type="checkbox" name="interest" value="Other"> Other: <input type="text" name="interestOther" class="form-input inline-block w-32"></label>
+                    <label><input type="checkbox" name="Areas of Interest" value="Disability Rights"> Disability Rights</label>
+                    <label><input type="checkbox" name="Areas of Interest" value="Youth Empowerment"> Youth Empowerment</label>
+                    <label><input type="checkbox" name="Areas of Interest" value="Gender Equality"> Gender Equality</label>
+                    <label><input type="checkbox" name="Areas of Interest" value="Environmental Sustainability"> Environmental Sustainability</label>
+                    <label><input type="checkbox" name="Areas of Interest" value="Education Access"> Education Access</label>
+                    <label><input type="checkbox" name="Areas of Interest" value="Policy & Governance"> Policy & Governance</label>
+                    <label><input type="checkbox" name="Areas of Interest" value="Media & Storytelling"> Media & Storytelling</label>
+                    <label><input type="checkbox" name="Areas of Interest" value="Racial Equity"> Racial Equity</label>
+                    <label><input type="checkbox" name="Areas of Interest" value="Economic Justice"> Economic Justice</label>
+                    <label><input type="checkbox" name="Areas of Interest" value="Health Equity"> Health Equity</label>
+                    <label><input type="checkbox" name="Areas of Interest" value="Other"> Other: <input class="form-input inline-block w-32" type="text" name="Areas of Interest Other"></label>
                   </div>
                 </div>
-              </div>
-              <!-- Declaration -->
-              <div>
-                <h3 class="text-lg font-semibold mb-2 border-b border-gray-200 dark:border-gray-700 pb-1">Declaration</h3>
-                <div class="mb-2 text-sm text-gray-600">I hereby declare that the information provided is true and complete. I agree to abide by the values, code of conduct, and policies of Advocacy Initiative Network.</div>
-                <div class="form-group flex space-x-2">
-                  <label>Signature: <input class="form-input inline-block w-40" type="text" name="signature" required></label>
-                  <label>Date: <input class="form-input inline-block w-32" type="date" name="signdate" required></label>
+                <div class="form-group">
+                  <label class="form-label" for="availability">Availability for Activities (Optional)</label>
+                  <input class="form-input" type="text" id="availability" name="Availability" placeholder="e.g., weekends, evenings, weekdays">
                 </div>
+              </fieldset>
+              <!-- Feedback for Inclusivity -->
+              <fieldset>
+                <legend class="font-semibold text-lg mb-2">Feedback for Inclusivity <span class="text-xs text-gray-400">(Optional)</span></legend>
+                <div class="form-group">
+                  <label class="form-label" for="feedback">How can the Advocacy Initiative Network better support diverse communities?</label>
+                  <textarea class="form-input" id="feedback" name="Inclusivity Feedback" rows="2"></textarea>
+                </div>
+              </fieldset>
+              <!-- Declaration -->
+              <fieldset>
+                <legend class="font-semibold text-lg mb-2">Declaration</legend>
+                <div class="mb-2 text-sm text-gray-600">I hereby declare that the information provided is true and complete to the best of my knowledge. I agree to abide by the values, code of conduct, and policies of the Advocacy Initiative Network.</div>
+                <div class="form-group flex flex-wrap gap-2">
+                  <label>Signature (or Typed Name): <input class="form-input inline-block w-40" type="text" name="Signature" required aria-required="true"></label>
+                  <label>Date: <input class="form-input inline-block w-32" type="date" name="Date Signed" required aria-required="true"></label>
+                </div>
+                <div class="form-group text-xs text-gray-500">
+                  <strong>Data Protection Notice:</strong> Your personal information will be handled following our Data Protection Policy. It will be used solely for membership purposes and will not be shared without your explicit consent. You may request a review or update of your information at any time.
+                </div>
+              </fieldset>
+              <div class="text-center">
+                <button class="btn btn-primary text-lg px-8 py-3" type="submit">Submit Application</button>
               </div>
-              <!-- Data Protection Notice -->
-              <div class="form-group text-xs text-gray-500">
-                <strong>Data Protection Notice:</strong> Your personal information will be handled in accordance with our Data Protection Policy. It will only be used for membership purposes and will not be shared without your consent.
-              </div>
-              <button class="btn btn-primary w-full" type="submit">Submit Application</button>
+              <div id="form-success" class="sr-only" aria-live="polite"></div>
             </form>
           </div>
         </div>
@@ -1397,7 +1517,7 @@
                             <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0">
                                 <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0zM12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/>
+                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0zM12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                 </svg>
                             </div>
                             <div>
