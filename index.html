@@ -543,7 +543,14 @@
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
         Skip to main content
     </a>
-
+<button id="readAloudBtn" class="btn btn-secondary m-4" aria-label="Read page aloud">
+  <i class="fas fa-volume-up mr-2"></i>
+  Read Page Aloud
+</button>
+<button id="stopReadAloudBtn" class="btn btn-accent m-4" aria-label="Stop reading" style="display:none;">
+  <i class="fas fa-stop mr-2"></i>
+  Stop Reading
+</button>
     <!-- Enhanced Header with Better Contrast -->
     <header class="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white py-8 relative overflow-hidden">
         <div class="absolute inset-0 bg-black opacity-20"></div>
@@ -2316,6 +2323,56 @@
                 if (e.key === 'ArrowLeft') prevPhoto();
             }
         });
+
+
+// Read Aloud functionality
+const readAloudBtn = document.getElementById('readAloudBtn');
+const stopReadAloudBtn = document.getElementById('stopReadAloudBtn');
+let isReading = false;
+
+function getReadableText() {
+    // Get main content only (skip nav, footer, modals, etc.)
+    const main = document.getElementById('main-content');
+    if (!main) return document.body.innerText;
+    return main.innerText;
+}
+
+function readPageAloud() {
+    if ('speechSynthesis' in window) {
+        const text = getReadableText();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1; // Normal speed
+        utterance.pitch = 1;
+        utterance.lang = 'en-US';
+        window.speechSynthesis.cancel(); // Stop any previous
+        window.speechSynthesis.speak(utterance);
+        isReading = true;
+        readAloudBtn.style.display = 'none';
+        stopReadAloudBtn.style.display = 'inline-block';
+        utterance.onend = () => {
+            isReading = false;
+            readAloudBtn.style.display = 'inline-block';
+            stopReadAloudBtn.style.display = 'none';
+        };
+    } else {
+        alert('Sorry, your browser does not support text-to-speech.');
+    }
+}
+
+function stopReading() {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        isReading = false;
+        readAloudBtn.style.display = 'inline-block';
+        stopReadAloudBtn.style.display = 'none';
+    }
+}
+
+if (readAloudBtn && stopReadAloudBtn) {
+    readAloudBtn.addEventListener('click', readPageAloud);
+    stopReadAloudBtn.addEventListener('click', stopReading);
+}
+
     </script>
 </body>
 </html>
